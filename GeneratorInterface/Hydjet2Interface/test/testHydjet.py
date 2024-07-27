@@ -4,9 +4,11 @@ process = cms.Process("ANA")
 
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("Configuration.StandardSequences.Services_cff")
-process.load("GeneratorInterface.Hydjet2Interface.hydjet2Default_cfi")
+# process.load("GeneratorInterface.Hydjet2Interface.hydjet2Default_cfi")
+process.load("GeneratorInterface.Hydjet2Interface.hydjet2_RHIC200GV_cfi")
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
+# process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))
 
 process.ana = cms.EDAnalyzer('Hydjet2Analyzer',
 
@@ -93,7 +95,12 @@ if Debug:
 		)
 
 process.TFileService = cms.Service('TFileService',
-	fileName = cms.string('Hydjet2_5020GeV.root')
+	# fileName = cms.string('Hydjet2_5020GeV.root')
+	# fileName = cms.string('Hydjet2_200GeV_Hydro_NoJ_0.root')
+	# fileName = cms.string('Hydjet2_200GeV_Hydro_J_on_Qoff_1.root')
+	# fileName = cms.string('Hydjet2_200GeV_H_J_HQ_on_2.root')
+	# fileName = cms.string('Hydjet2_200GeV_Hon_J_HQ_off_3.root')
+	fileName = cms.string('Hydjet2_200GeV_Hoff_J_JQ_on_4.root')
 )
 
 process.p = cms.Path(process.generator*process.ana)
